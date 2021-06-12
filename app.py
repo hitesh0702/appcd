@@ -83,8 +83,8 @@ browser_header = {'User-Agent': temp_user_agent.random}
 
 final_df = None
 for INP_DATE in date_str:
-    URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}".format(DIST_ID, INP_DATE)
-    response = requests.get(URL, headers=browser_header)
+   URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}".format(DIST_ID, INP_DATE)
+     response = requests.get(URL, headers=browser_header)
     if (response.ok) and ('centers' in json.loads(response.text)):
         resp_json = json.loads(response.text)['centers']
         if resp_json is not None:
@@ -101,6 +101,8 @@ for INP_DATE in date_str:
                 else:
                     final_df = deepcopy(df)
         else:
+            st.error("No rows in the data Extracted from the API")
+#     else:
             st.error("No rows in the data Extracted from the API")
 #     else:
 #         st.error("Invalid response")
